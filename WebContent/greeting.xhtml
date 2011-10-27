@@ -1,0 +1,39 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Guess Number Facelets Application</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:graphicImage value="#{resource['images:wave.med.gif']}" />
+		<h2>
+			Hi, my name is Duke. I am thinking of a number from
+			#{userNumberBean.minimum} to #{userNumberBean.maximum}. Can you guess
+			it?<br />
+			<h:inputText id="userNo" value="#{userNumberBean.userNumber}">
+				<f:validateLongRange minimum="#{userNumberBean.minimum}"
+					maximum="#{userNumberBean.maximum}" />
+			</h:inputText>
+			<h:commandButton id="submit" value="Submit"
+				action="#{userNumberBean.check}" />
+			<h:commandButton id="cancel" value="Give up" immediate="true"
+				action="#{userNumberBean.giveup}" />
+			<br />
+			<h:message showSummary="true" showDetail="false"
+				style="color: red;
+                           font-family: 'New Century Schoolbook', serif;
+                           font-style: oblique;
+                           text-decoration: overline"
+				id="errors1" for="userNo" />
+		</h2>
+	</h:form>
+</h:body>
+</html>
+
+
+
