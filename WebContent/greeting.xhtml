@@ -7,14 +7,19 @@
 
 <h:head>
 	<title>Guess Number Facelets Application</title>
+	<link rel="stylesheet" href="${resource['css:default.css']}" type="text/css" />
 </h:head>
 <h:body>
 	<h:form>
 		<h:graphicImage value="#{resource['images:wave.med.gif']}" />
 		<h2>
-			Hi, my name is Duke. I am thinking of a number from
+			Game on
+		</h2>
+		<p>
+			Hey there, I think of a number and you should guess it. Ready?
 			#{userNumberBean.minimum} to #{userNumberBean.maximum}. Can you guess
-			it?<br />
+			it?</p>
+			<p>
 			<h:inputText id="userNo" value="#{userNumberBean.userNumber}">
 				<f:validateLongRange minimum="#{userNumberBean.minimum}"
 					maximum="#{userNumberBean.maximum}" />
@@ -30,7 +35,8 @@
                            font-style: oblique;
                            text-decoration: overline"
 				id="errors1" for="userNo" />
-		</h2>
+		</p>
+		
 	</h:form>
 </h:body>
 </html>
