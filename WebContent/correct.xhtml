@@ -2,18 +2,25 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
 	<title>Guess Number Facelets Application</title>
-	<link rel="stylesheet" href="${resource['css:default.css']}" type="text/css" />
-	
+	<link rel="stylesheet" href="${resource['css:style.css']}"
+		type="text/css" />
+
 </h:head>
 <h:body>
-	<h:form>
-		<h:graphicImage value="#{resource['images:wave.med.gif']}" />
-		<h2>Yay! You got it</h2>
-		<h:button id="back" value="Back" outcome="greeting.xhtml" />
-	</h:form>
+	<ui:include src="./resources/templates/header.xhtml" />
+
+	<div id="container">
+		<h:form>
+			<br />
+			<h2>You picked the right number!</h2>
+			<h:button id="back" value="Play again" outcome="greeting.xhtml" />
+		</h:form>
+	</div>
+	<ui:include src="./resources/templates/footer.xhtml" />
 </h:body>
 </html>

@@ -8,22 +8,25 @@
  */
 
 package guessNumber;
+
 import java.util.Random;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 
 import javax.servlet.http.*;
-
-
 
 @ManagedBean
 @SessionScoped
 public class UserNumberBean {
 	Integer randomInt = null;
 	Integer userNumber = null;
-	private long maximum = 10;
+	Integer remainingGuesses = 3;
+	private long maximum = 100;
 	private long minimum = 1;
 
 	public UserNumberBean() {
@@ -32,6 +35,13 @@ public class UserNumberBean {
 		System.out.println("Duke's number: " + randomInt);
 	}
 
+	public Integer getRemainingGuesses() {
+		return remainingGuesses;
+	}
+	
+	public void guessed(){
+		this.remainingGuesses = remainingGuesses-1;
+	}
 	public void setUserNumber(Integer user_number) {
 		userNumber = user_number;
 	}
@@ -53,7 +63,8 @@ public class UserNumberBean {
 	private void invalidateSession() {
 		System.out.println("Session invalidiert");
 		FacesContext fc = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+		HttpSession session = (HttpSession) fc.getExternalContext().getSession(
+				false);
 		session.invalidate();
 	}
 
@@ -77,5 +88,23 @@ public class UserNumberBean {
 
 	public void setMinimum(long minimum) {
 		this.minimum = minimum;
+	}
+
+	public void validateNumberRange(FacesContext context,
+			UIComponent toValidate, Object value) {
+		if (remainingGuesses <= 0) {
+			FacesMessage message = new FacesMessage("No guesses left!");
+			context.addMessage(toValidate.getClientId(context), message);
+			((UIInput) toValidate).setValid(false);
+			return;
+		}
+		int input = (Integer) value;
+
+		if (input < minimum || input > maximum) {
+			((UIInput) toValidate).setValid(false);
+
+			FacesMessage message = new FacesMessage("This is an invalid guess");
+			context.addMessage(toValidate.getClientId(context), message);
+		}
 	}
 }
