@@ -102,7 +102,7 @@ public class UserNumberBean {
 
 		if (input < minimum || input > maximum) {
 			((UIInput) toValidate).setValid(false);
-			FacesMessage message = new FacesMessage("This is an invalid guess");
+			FacesMessage message = new FacesMessage("This is an invalid guess (klick to hide)");
 			context.addMessage(toValidate.getClientId(context), message);
 		}
 	}

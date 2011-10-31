@@ -1,3 +1,5 @@
 $(document).ready(function() {
-	$('#validator').delay(2000).fadeOut('slow');
+	$('#validator').click(function(){
+		$('#validator').fadeOut('slow');
+	});
 });
