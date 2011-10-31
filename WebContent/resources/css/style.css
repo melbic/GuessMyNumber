@@ -49,6 +49,7 @@ a:link:hover,a:visited:hover {
 #container {
 	background-color: #a5a5a5;
 }
-#error {
-	font: #ff0000;
+#validator {
+	padding: 10px;
+	background-color: #ff0000;
 }
