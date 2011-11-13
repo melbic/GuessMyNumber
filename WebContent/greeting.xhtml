@@ -3,57 +3,75 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
 
-<h:head>
-	<title>The GuessMyNumber Game &copy; 2011</title>
-	<link rel="stylesheet" href="${resource['css:style.css']}"
-		type="text/css" />
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
-	<script type="text/javascript" src="./resources/js/animation.js"></script>
-</h:head>
-<h:body>
+<ui:composition template="./resources/templates/header.xhtml">
 
-	<ui:include src="./resources/templates/header.xhtml" />
+	<ui:define name="title">
+		<h:outputText value="#{text.logintitle}" />
+	</ui:define>
+	<ui:define name="body">
+		<div id="container">
+			<br />
+			<h:form id="form">
+				<h2>
+					<h:outputText value="#{text.greetingtitle}" />
+				</h2>
+				<p>
+					<h:outputText value="#{text.greeting}" />
+				</p>
+				<p>
+					<h:outputText value="#{text.usersingame}" />
+				</p>
 
-	<div id="container">
-		<br />
-		<h:form>
-			<h2>Game on</h2>
+				<div id="userlist">
+					<p:dataTable value="#{user.myHomies}" var="usr" id="userlist">
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{text.username}" />
+							</f:facet>
+							<h:outputText value="#{usr.name}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{text.guess}" />
+							</f:facet>
+							<h:outputText value="#{usr.guess}" />
+						</p:column>
+					</p:dataTable>
+					<p:poll interval="1" update="userlist" />
+				</div>
+			</h:form>
+			<h:form id="guessform">
+				<h:panelGrid columns="1">
+					<h:inputText id="theguess" value="#{user.guess}" />
+					<h:commandButton value="#{text.submit}" onclick="this.disabled=true">
+						<f:ajax execute="theguess" />
+					</h:commandButton>
+				</h:panelGrid>
+				<h:outputText id="name" value="#{test.name}" />
+			</h:form>
+			
 			<p>
-				Hey there, I think of a number and you should guess it.<br /> The
-				Number is between #{userNumberBean.minimum} and
-				#{userNumberBean.maximum}
+				<span id="validator"> <h:message showSummary="true"
+						showDetail="false" id="errors1" for="userNo" />
+				</span>
 			</p>
-			<p>
-				<h:inputText id="userNo" value="#{userNumberBean.userNumber}"
-					validator="#{userNumberBean.validateNumberRange}">
-					<f:validateLongRange minimum="#{userNumberBean.minimum}"
-						maximum="#{userNumberBean.maximum}" />
+			<br />
 
-				</h:inputText>
-				<h:commandButton id="submit" value="Submit"
-					action="#{userNumberBean.check}" />
-				<br />
-				<h:commandButton id="cancel" value="Give up" immediate="true"
-					action="#{userNumberBean.giveup}" />
-				<br />
+		</div>
+	</ui:define>
+</ui:composition>
 
-			</p>
-
-		</h:form>
-		<p>
-			<span id="validator"> <h:message showSummary="true"
-					showDetail="false" id="errors1" for="userNo" />
-			</span>
-		</p>
-		<br />
-	</div>
-
-	<ui:include src="./resources/templates/footer.xhtml" />
-</h:body>
 </html>
+
+
+
+
+
 
 
 

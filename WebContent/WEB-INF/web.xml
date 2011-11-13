@@ -13,7 +13,7 @@
     <session-timeout>30</session-timeout>
   </session-config>
   <welcome-file-list>
-    <welcome-file>faces/greeting.xhtml</welcome-file>
+    <welcome-file>faces/login.xhtml</welcome-file>
   </welcome-file-list>
   <context-param>
     <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>

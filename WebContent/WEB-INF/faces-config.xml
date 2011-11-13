@@ -6,5 +6,30 @@
 	<lifecycle>
 		<phase-listener>guessNumber.SysoutPhaseListener</phase-listener>
 	</lifecycle>
+	<managed-bean>
+		<managed-bean-name>gameSession</managed-bean-name>
+		<managed-bean-class>guessNumber.GameSession</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>user</managed-bean-name>
+		<managed-bean-class>guessNumber.User</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>local</managed-bean-name>
+		<managed-bean-class>guessNumber.Local</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<application>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>de</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>lang.lang</base-name>
+			<var>text</var>
+		</resource-bundle>
+	</application>
 </faces-config>
 

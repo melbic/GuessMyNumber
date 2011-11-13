@@ -11,14 +11,27 @@
 	</ui:define>
 
 	<ui:define name="body">
-		
-
-	<div id="container">
-		<h:form>
-			<h2>Sad, you gave up!</h2>
-			<h:button id="back" value="Go Back" outcome="greeting.xhtml" />
-		</h:form>
-	</div>
+		<div id="container">
+			<br />
+			<h:form>
+				<h2>Login</h2>
+				<p>
+					<h:outputText value="#{text.login}" />
+				</p>
+				<p>
+					<h:inputText id="userName" value="#{user.name}">
+					</h:inputText>
+					<h:commandButton id="start" value="Start" action="#{user.login}" />
+					<br />
+				</p>
+			</h:form>
+			<p>
+				<span id="validator"> <h:message showSummary="true"
+						showDetail="false" id="errors1" for="userName" />
+				</span>
+			</p>
+			<br />
+		</div>
 	</ui:define>
 
 </ui:composition>

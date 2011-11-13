@@ -1,18 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="#{locale.language}" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<body>
-	<div id="header">
+<f:view locale="#{local.locale}">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title><ui:insert name="title"></ui:insert></title>
+		<link rel="stylesheet" href="${resource['css:style.css']}"
+			type="text/css" />
+		<script
+			src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+		<script type="text/javascript" src="./resources/js/animation.js"></script>
 
-		<h:graphicImage value="#{resource['images:title.png']}" />
-		<br />
-	</div>
+	</h:head>
 
+	<h:body>
+		<div id="header">
 
-</body>
+			<h:graphicImage value="#{resource['images:title.png']}" />
+			<br />
+			<h:form>
+				<h:outputText value="#{text.lang}"></h:outputText>
+				<h:selectOneMenu value="#{local.language}" onchange="submit()">
+					<f:selectItem itemValue="en" itemLabel="English" />
+					<f:selectItem itemValue="de" itemLabel="Deutsch" />
+				</h:selectOneMenu>
+			</h:form>
+			<br />
+		</div>
+		<ui:insert name="body"></ui:insert>
+		<div id="footer">
+			<h:outputText value="#{text.footer}"></h:outputText>
+		</div>
+	</h:body>
 
-
+</f:view>
 </html>
